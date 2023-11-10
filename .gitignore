@@ -7,7 +7,7 @@ db.sqlite3
 media
 
 # Ignore database migrations
-**/migrations/
+# **/migrations/
 
 # Backup files
 *.bak 
