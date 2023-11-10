@@ -1,4 +1,4 @@
-# Django #
+# Django
 *.log
 *.pot
 *.pyc
@@ -6,10 +6,13 @@ __pycache__
 db.sqlite3
 media
 
-# Backup files # 
+# Ignore database migrations
+**/migrations/
+
+# Backup files
 *.bak 
 
-# If you are using PyCharm # 
+# If you are using PyCharm
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
@@ -45,7 +48,7 @@ out/
 # JIRA plugin
 atlassian-ide-plugin.xml
 
-# Python # 
+# Python
 *.py[cod] 
 *$py.class 
 
@@ -111,7 +114,7 @@ venv.bak/
 # mypy 
 .mypy_cache/ 
 
-# Sublime Text # 
+# Sublime Text
 *.tmlanguage.cache 
 *.tmPreferences.cache 
 *.stTheme.cache 
@@ -128,7 +131,7 @@ Control.ca-bundle
 Control.system-ca-bundle 
 GitHub.sublime-settings 
 
-# Visual Studio Code # 
+# Visual Studio Code
 .vscode/* 
 !.vscode/settings.json 
 !.vscode/tasks.json 
