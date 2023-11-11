@@ -19,13 +19,18 @@ from django.urls import path, include
 from rest_framework import routers
 from proveedores.api import ProveedorViewSet
 from restaurantes.api import RestauranteViewSet
+from usuarios.api import UsuarioViewSet, RegistroAPIView
+
+
 
 router = routers.DefaultRouter()
 router.register(r'restaurantes', RestauranteViewSet)
 router.register(r'proveedores', ProveedorViewSet)
+router.register(r'usuarios', UsuarioViewSet)
+# router.register(r'registro', RegistroAPIView.as_view())
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    # path('', include('restaurantes.urls')),
+    path('registro/', RegistroAPIView.as_view())
 ]
