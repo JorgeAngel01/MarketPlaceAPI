@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, permissions, generics, response, status
+from rest_framework import viewsets, views, permissions, generics, response, status
 from rest_framework.authtoken.models import Token
 from .serializers import UsuarioSerializer, RegistroSerializer
 
@@ -25,3 +25,11 @@ class RegistroAPIView(generics.CreateAPIView):
             status=status.HTTP_201_CREATED,
             headers=headers
         )
+
+class LogoutAPIView(views.APIView):
+    queryset = User.objects.all()
+
+    def get(self, request, format=None):
+        # simply delete the token to force a login
+        request.user.auth_token.delete()
+        return response.Response(status=status.HTTP_200_OK)

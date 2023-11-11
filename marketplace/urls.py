@@ -17,20 +17,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 from proveedores.api import ProveedorViewSet
 from restaurantes.api import RestauranteViewSet
-from usuarios.api import UsuarioViewSet, RegistroAPIView
+from usuarios.api import UsuarioViewSet, RegistroAPIView, LogoutAPIView
 
 
 
 router = routers.DefaultRouter()
-router.register(r'restaurantes', RestauranteViewSet)
-router.register(r'proveedores', ProveedorViewSet)
 router.register(r'usuarios', UsuarioViewSet)
-# router.register(r'registro', RegistroAPIView.as_view())
+router.register(r'proveedores', ProveedorViewSet)
+router.register(r'restaurantes', RestauranteViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('registro/', RegistroAPIView.as_view())
+    path('admin/', admin.site.urls),
+    path('registro/', RegistroAPIView.as_view()),
+    path('logout/', LogoutAPIView.as_view()),
+    path('login/', obtain_auth_token),
 ]

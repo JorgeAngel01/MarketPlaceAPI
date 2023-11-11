@@ -4,8 +4,7 @@ from django.contrib.auth.models import User, Group
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        #fields = ['id', 'first_name', 'last_name', 'username']
-        fields = ['id', 'username', 'email']
+        fields = ['username', 'password', 'email', 'first_name', 'last_name']
 
 class RegistroSerializer(serializers.ModelSerializer):
     class Meta:
