@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'productos',
     'usuarios',
     'ordenes',
+    'reviews',
 ]
 
 # REST_FRAMEWORK = {

@@ -23,6 +23,7 @@ from restaurantes.api import RestauranteViewSet
 from proveedores.api import ProveedorViewSet
 from productos.api import ProductoViewSet
 from ordenes.api import OrdenViewSet, OrdenItemViewSet
+from reviews.api import ReviewViewSet
 
 
 
@@ -33,6 +34,7 @@ router.register(r'proveedores', ProveedorViewSet)
 router.register(r'restaurantes', RestauranteViewSet)
 router.register(r'ordenes', OrdenViewSet)
 router.register(r'items_ordenes', OrdenItemViewSet)
+router.register(r'reviews', ReviewViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
