@@ -4,4 +4,4 @@ from .models import Restaurante
 class RestauranteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurante
-        fields = ('id', 'nombre', 'descripcion', 'latitud', 'longitud')
+        fields = ('id', 'propietario', 'nombre', 'descripcion', 'latitud', 'longitud')

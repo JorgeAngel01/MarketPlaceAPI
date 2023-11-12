@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'restaurantes',
     'proveedores',
+    'productos',
     'usuarios',
+    'ordenes',
 ]
 
 # REST_FRAMEWORK = {

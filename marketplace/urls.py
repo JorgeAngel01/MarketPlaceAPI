@@ -18,16 +18,21 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-from proveedores.api import ProveedorViewSet
-from restaurantes.api import RestauranteViewSet
 from usuarios.api import UsuarioViewSet, RegistroAPIView, LogoutAPIView
+from restaurantes.api import RestauranteViewSet
+from proveedores.api import ProveedorViewSet
+from productos.api import ProductoViewSet
+from ordenes.api import OrdenViewSet, OrdenItemViewSet
 
 
 
 router = routers.DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet)
+router.register(r'productos', ProductoViewSet)
 router.register(r'proveedores', ProveedorViewSet)
 router.register(r'restaurantes', RestauranteViewSet)
+router.register(r'ordenes', OrdenViewSet)
+router.register(r'items_ordenes', OrdenItemViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
