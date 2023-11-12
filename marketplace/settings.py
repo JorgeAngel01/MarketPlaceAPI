@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'proveedores',
     'productos',
     'usuarios',
+    'ordenes',
 ]
 
 # REST_FRAMEWORK = {
