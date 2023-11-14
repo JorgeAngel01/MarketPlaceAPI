@@ -15,18 +15,20 @@ class Producto(models.Model):
         choices=ESTADO,
         default=1,
     )
-    restaurante = models.ForeignKey(
-        Restaurante, 
-        on_delete=models.CASCADE, 
-        null=True, 
-        blank=True
-    )
-    proveedor = models.ForeignKey(
-        Proveedor, 
-        on_delete=models.CASCADE, 
-        null=True, 
-        blank=True
-    )
+    restaurantes = models.ManyToManyField(Restaurante, blank=True)
+    proveedores = models.ManyToManyField(Proveedor, blank=True)
+    # restaurante = models.ForeignKey(
+    #     Restaurante, 
+    #     on_delete=models.CASCADE, 
+    #     null=True, 
+    #     blank=True
+    # )
+    # proveedor = models.ForeignKey(
+    #     Proveedor, 
+    #     on_delete=models.CASCADE, 
+    #     null=True, 
+    #     blank=True
+    # )
     
     def __str__(self):
         return self.nombre
