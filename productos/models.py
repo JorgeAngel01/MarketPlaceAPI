@@ -6,7 +6,7 @@ class Producto(models.Model):
     ESTADO = [ ('1', 'En Stock'), ('2', 'Agotado'), ]
     
     nombre = models.CharField(max_length=255)
-    descripcion = models.TextField()
+    descripcion = models.TextField(null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     # Agregar Imagen
     # Agregar Categoria
