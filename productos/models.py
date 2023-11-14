@@ -6,7 +6,7 @@ class Producto(models.Model):
     ESTADO = [ ('1', 'En Stock'), ('2', 'Agotado'), ]
     
     nombre = models.CharField(max_length=255)
-    descripcion = models.TextField()
+    descripcion = models.TextField(null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     # Agregar Imagen
     # Agregar Categoria
@@ -15,18 +15,20 @@ class Producto(models.Model):
         choices=ESTADO,
         default=1,
     )
-    restaurante = models.ForeignKey(
-        Restaurante, 
-        on_delete=models.CASCADE, 
-        null=True, 
-        blank=True
-    )
-    proveedor = models.ForeignKey(
-        Proveedor, 
-        on_delete=models.CASCADE, 
-        null=True, 
-        blank=True
-    )
+    restaurantes = models.ManyToManyField(Restaurante, blank=True)
+    proveedores = models.ManyToManyField(Proveedor, blank=True)
+    # restaurante = models.ForeignKey(
+    #     Restaurante, 
+    #     on_delete=models.CASCADE, 
+    #     null=True, 
+    #     blank=True
+    # )
+    # proveedor = models.ForeignKey(
+    #     Proveedor, 
+    #     on_delete=models.CASCADE, 
+    #     null=True, 
+    #     blank=True
+    # )
     
     def __str__(self):
         return self.nombre
