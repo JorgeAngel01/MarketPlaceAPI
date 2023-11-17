@@ -18,10 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-from usuarios.api import UsuarioViewSet, RegistroAPIView, LogoutAPIView
-from restaurantes.api import RestauranteViewSet
-from proveedores.api import ProveedorViewSet
-from productos.api import ProductoViewSet
+from usuarios.api import UsuarioViewSet, RegistroAPIView, LogoutAPIView, GetUserByNameView
+from restaurantes.api import RestauranteViewSet, GetRestaurantView
+from proveedores.api import ProveedorViewSet, GetProveedorView
+from productos.api import ProductoViewSet, GetProductosRestauranteView, GetProductosProveedorView
 from ordenes.api import OrdenViewSet, OrdenItemViewSet
 from reviews.api import ReviewViewSet
 
@@ -42,4 +42,9 @@ urlpatterns = [
     path('registro/', RegistroAPIView.as_view()),
     path('logout/', LogoutAPIView.as_view()),
     path('login/', obtain_auth_token),
+    path('usuario/<str:username>', GetUserByNameView.as_view()),
+    path('restaurante/<str:username>', GetRestaurantView.as_view()),
+    path('proveedor/<str:username>', GetProveedorView.as_view()),
+    path('productos_restaurante/<int:restaurante_id>', GetProductosRestauranteView.as_view()),
+    path('productos_proveedor/<int:proveedor_id>', GetProductosProveedorView.as_view()),
 ]

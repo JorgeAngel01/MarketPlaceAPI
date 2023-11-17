@@ -33,3 +33,19 @@ class LogoutAPIView(views.APIView):
         # simply delete the token to force a login
         request.user.auth_token.delete()
         return response.Response(status=status.HTTP_200_OK)
+
+class GetUserByNameView(views.APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, username):
+        try:
+            user = User.objects.get(username=username)
+            user_data = {
+                'user_id': user.id,
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name': user.last_name
+            }
+            return response.Response(user_data)
+        except User.DoesNotExist:
+            return response.Response({'error': 'Usuario no encontrado'}, status=status.HTTP_404_NOT_FOUND)
