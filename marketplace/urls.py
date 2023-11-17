@@ -19,7 +19,7 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from usuarios.api import UsuarioViewSet, RegistroAPIView, LogoutAPIView, GetUserByNameView
-from restaurantes.api import RestauranteViewSet
+from restaurantes.api import RestauranteViewSet, GetRestaurantView
 from proveedores.api import ProveedorViewSet
 from productos.api import ProductoViewSet
 from ordenes.api import OrdenViewSet, OrdenItemViewSet
@@ -43,4 +43,5 @@ urlpatterns = [
     path('logout/', LogoutAPIView.as_view()),
     path('login/', obtain_auth_token),
     path('usuario/<str:username>', GetUserByNameView.as_view()),
+    path('restaurante/<str:username>', GetRestaurantView.as_view()),
 ]
