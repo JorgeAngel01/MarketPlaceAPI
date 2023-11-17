@@ -12,11 +12,11 @@ class GetRestaurantView(views.APIView):
 
     def get(self, request, username):
         try:
-            owner = User.objects.get(username=username)
+            propietario = User.objects.get(username=username)
             
-            restaurants = Restaurante.objects.filter(propietario=owner)
+            restaurantes = Restaurante.objects.filter(propietario=propietario)
             
-            serializer = RestauranteSerializer(restaurants, many=True)
+            serializer = RestauranteSerializer(restaurantes, many=True)
             return response.Response(serializer.data)
 
         except User.DoesNotExist:
