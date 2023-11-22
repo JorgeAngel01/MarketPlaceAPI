@@ -3,10 +3,7 @@ from restaurantes.models import Restaurante
 from proveedores.models import Proveedor
 from productos import catalogos
 
-class Producto(models.Model):
-    
-
-    
+class Producto(models.Model):    
     nombre = models.CharField(max_length=255)
     descripcion = models.TextField(null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
