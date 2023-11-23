@@ -2,6 +2,8 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, views, permissions, generics, response, status
 from rest_framework.authtoken.models import Token
 from .serializers import UsuarioSerializer, RegistroSerializer
+from restaurantes.models import Restaurante
+from proveedores.models import Proveedor
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
@@ -46,6 +48,12 @@ class GetUserByNameView(views.APIView):
                 'first_name': user.first_name,
                 'last_name': user.last_name
             }
+            if Restaurante.objects.filter(propietario=user).exists():
+                user_data['tipo'] = 'restaurante'
+            elif Proveedor.objects.filter(propietario=user).exists():
+                user_data['tipo'] = 'proveedor'
+            else:
+                user_data['tipo'] = 'nothing'
             return response.Response(user_data)
         except User.DoesNotExist:
             return response.Response({'error': 'Usuario no encontrado'}, status=status.HTTP_404_NOT_FOUND)
