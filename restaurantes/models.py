@@ -6,6 +6,8 @@ class Restaurante(models.Model):
     propietario = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=400, null=True, blank=True)
+    banner = models.URLField(max_length=200, null=True, blank=True)
+    icono = models.URLField(max_length=200, null=True, blank=True)
     categoria = models.CharField(
         max_length=2,
         choices=catalogos.CATEGORIAS,

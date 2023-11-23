@@ -7,7 +7,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=255)
     descripcion = models.TextField(null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    # Agregar Imagen
+    image = models.URLField(max_length=200, null=True, blank=True)
     categoria = models.CharField(
         max_length=2,
         choices=catalogos.CATEGORIAS,

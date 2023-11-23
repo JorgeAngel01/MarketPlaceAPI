@@ -4,6 +4,8 @@ from proveedores import catalogos
 
 class Proveedor(models.Model):
     nombre = models.CharField(max_length=100)
+    banner = models.URLField(max_length=200, null=True, blank=True)
+    icono = models.URLField(max_length=200, null=True, blank=True)
     descripcion = models.CharField(
         max_length=400, 
         null=True, 
