@@ -2,6 +2,7 @@ from .models import Restaurante
 from django.contrib.auth.models import User
 from .serializers import RestauranteSerializer
 from rest_framework import viewsets, permissions, views, response, status
+from .catalogos import lista_categorias
 
 class RestauranteViewSet(viewsets.ModelViewSet):
     queryset = Restaurante.objects.all()
@@ -21,3 +22,7 @@ class GetRestaurantView(views.APIView):
 
         except User.DoesNotExist:
             return response.Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+class CatRestauranteListView(views.APIView):
+    def get(self, request):
+        return response.Response(lista_categorias)

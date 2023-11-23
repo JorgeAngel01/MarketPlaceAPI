@@ -4,4 +4,4 @@ from .models import Proveedor
 class ProveedorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proveedor
-        fields = ('id', 'nombre', 'descripcion', 'propietario')
+        fields = '__all__'

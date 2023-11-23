@@ -3,6 +3,7 @@ from proveedores.models import Proveedor
 from restaurantes.models import Restaurante
 from .serializers import ProductoSerializer
 from rest_framework import viewsets, permissions, views, response, status
+from .catalogos import lista_categorias, lista_estados
 
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
@@ -36,3 +37,11 @@ class GetProductosProveedorView(views.APIView):
 
         except Proveedor.DoesNotExist:
             return response.Response({'error': 'Proveedor no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+
+class CatProductoListView(views.APIView):
+    def get(self, request):
+        return response.Response(lista_categorias)
+
+class EstProductoPListView(views.APIView):
+    def get(self, request):
+        return response.Response(lista_estados)
