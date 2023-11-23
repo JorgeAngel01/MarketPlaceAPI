@@ -2,6 +2,7 @@ from .models import Proveedor
 from django.contrib.auth.models import User
 from .serializers import ProveedorSerializer
 from rest_framework import viewsets, permissions, views, response, status
+from .catalogos import lista_categorias
 
 class ProveedorViewSet(viewsets.ModelViewSet):
     queryset = Proveedor.objects.all()
@@ -21,3 +22,7 @@ class GetProveedorView(views.APIView):
 
         except User.DoesNotExist:
             return response.Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+class CatProveedorListView(views.APIView):
+    def get(self, request):
+        return response.Response(lista_categorias)
