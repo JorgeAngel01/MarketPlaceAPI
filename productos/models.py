@@ -18,6 +18,12 @@ class Producto(models.Model):
         choices=catalogos.ESTADO,
         default=1,
     )
+    promedio_calific = models.DecimalField(
+        max_digits=3,
+        decimal_places=2, 
+        null=True, 
+        blank=True
+    )
     restaurantes = models.ManyToManyField(Restaurante, blank=True)
     proveedores = models.ManyToManyField(Proveedor, blank=True)
     

@@ -14,6 +14,12 @@ class Proveedor(models.Model):
         choices=catalogos.CATEGORIAS,
         default=0,
     )
+    promedio_calific = models.DecimalField(
+        max_digits=3,
+        decimal_places=2, 
+        null=True, 
+        blank=True
+    )
     propietario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
