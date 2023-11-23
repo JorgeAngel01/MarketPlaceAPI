@@ -1,9 +1,10 @@
 from .models import Review
 from .serializers import ReviewSerializer
+from django.contrib.auth.models import User
 # from restaurantes.models import Restaurante
 # from proveedores.models import Proveedor
 # from productos.models import Producto
-from rest_framework import viewsets, permissions, response, status
+from rest_framework import viewsets, permissions, response, status, views
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
@@ -43,3 +44,17 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+class GetReviewView(views.APIView):
+
+    def get(self, request, username):
+        try:
+            autor = User.objects.get(username=username)
+            
+            reviews = Review.objects.filter(autor=autor)
+            
+            serializer = ReviewSerializer(reviews, many=True)
+            return response.Response(serializer.data)
+
+        except User.DoesNotExist:
+            return response.Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
