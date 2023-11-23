@@ -5,7 +5,7 @@ from rest_framework import viewsets, permissions, views, response, status
 from .catalogos import lista_categorias
 
 class RestauranteViewSet(viewsets.ModelViewSet):
-    queryset = Restaurante.objects.all()
+    queryset = Restaurante.objects.all().order_by('-promedio_calific')
     permission_classes = [permissions.AllowAny]
     serializer_class = RestauranteSerializer
 

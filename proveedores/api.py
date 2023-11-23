@@ -5,7 +5,7 @@ from rest_framework import viewsets, permissions, views, response, status
 from .catalogos import lista_categorias
 
 class ProveedorViewSet(viewsets.ModelViewSet):
-    queryset = Proveedor.objects.all()
+    queryset = Proveedor.objects.all().order_by('-promedio_calific')
     permission_classes = [permissions.AllowAny]
     serializer_class = ProveedorSerializer
 

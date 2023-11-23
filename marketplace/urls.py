@@ -22,8 +22,8 @@ from usuarios.api import UsuarioViewSet, RegistroAPIView, LogoutAPIView, GetUser
 from restaurantes.api import RestauranteViewSet, GetRestaurantView, CatRestauranteListView
 from proveedores.api import ProveedorViewSet, GetProveedorView, CatProveedorListView
 from productos.api import ProductoViewSet, GetProductosRestauranteView, GetProductosProveedorView, CatProductoListView, EstProductoPListView
-from ordenes.api import OrdenViewSet, OrdenItemViewSet
-from reviews.api import ReviewViewSet
+from ordenes.api import OrdenViewSet, OrdenItemViewSet, GetOrdenView
+from reviews.api import ReviewViewSet, GetReviewView
 
 
 
@@ -47,6 +47,8 @@ urlpatterns = [
     path('restaurantes/categorias', CatRestauranteListView.as_view()),
     path('proveedor/<str:username>', GetProveedorView.as_view()),
     path('proveedores/categorias', CatProveedorListView.as_view()),
+    path('reviews/<str:username>', GetReviewView.as_view()),
+    path('ordenes/<str:username>', GetOrdenView.as_view()),
     path('productos_restaurante/<int:restaurante_id>', GetProductosRestauranteView.as_view()),
     path('productos_proveedor/<int:proveedor_id>', GetProductosProveedorView.as_view()),
     path('productos/categorias', CatProductoListView.as_view()),
