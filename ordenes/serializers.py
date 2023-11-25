@@ -4,9 +4,9 @@ from .models import Orden, OrdenItem
 class OrdenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Orden
-        fields = ('id', 'cliente', 'fecha', 'precio_total', 'estado')
+        fields = '__all__'
 
 class OrdenItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrdenItem
-        fields = ('id', 'orden', 'producto', 'cantidad')
+        fields = '__all__'

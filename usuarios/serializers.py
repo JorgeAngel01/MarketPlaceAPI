@@ -10,7 +10,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
 class RegistroSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'password', 'email', 'first_name', 'last_name')
+        fields = ('id', 'username', 'password', 'email', 'first_name', 'last_name')
         extra_kwargs = {
             # 'is_staff': {'write_only': True},
             # 'is_superuser': {'write_only': True},

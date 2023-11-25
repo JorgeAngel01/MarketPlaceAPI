@@ -4,8 +4,8 @@ from proveedores.models import Proveedor
 from productos import catalogos
 
 class Producto(models.Model):    
-    nombre = models.CharField(max_length=255)
-    descripcion = models.TextField(null=True, blank=True)
+    nombre = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=30, null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.URLField(max_length=200, null=True, blank=True)
     categoria = models.CharField(

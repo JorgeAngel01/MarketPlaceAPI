@@ -26,7 +26,7 @@ class Orden(models.Model):
 class OrdenItem(models.Model):
     orden = models.ForeignKey(Orden, related_name='items', on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    cantidad = models.IntegerField()
+    cantidad = models.IntegerField(default=1)
     
     def __str__(self):
         return f"Producto {self.producto} en {self.orden}"
