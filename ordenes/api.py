@@ -70,3 +70,22 @@ class GetOrdenView(views.APIView):
 
         except User.DoesNotExist:
             return response.Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+class GetItemsOrdenView(views.APIView):
+
+    def get(self, request):
+        orden_id = request.query_params.get('orden_id')
+        if not orden_id:
+            return response.Response({'error': 'Orden ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            # Verify if the Orden exists
+            Orden.objects.get(id=orden_id)
+        except Orden.DoesNotExist:
+            return response.Response({'error': 'Orden not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        # Fetch all items related to the Orden
+        orden_items = OrdenItem.objects.filter(orden_id=orden_id)
+        serializer = OrdenItemSerializer(orden_items, many=True)
+
+        return response.Response(serializer.data)
