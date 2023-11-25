@@ -4,7 +4,7 @@ from restaurantes import catalogos
 
 class Restaurante(models.Model):
     propietario = models.ForeignKey(User, on_delete=models.CASCADE)
-    nombre = models.CharField(max_length=30)
+    nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=100, null=True, blank=True)
     banner = models.URLField(max_length=200, null=True, blank=True)
     icono = models.URLField(max_length=200, null=True, blank=True)
