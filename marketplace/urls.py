@@ -22,7 +22,7 @@ from usuarios.api import UsuarioViewSet, RegistroAPIView, LogoutAPIView, GetUser
 from restaurantes.api import RestauranteViewSet, GetRestaurantView, CatRestauranteListView
 from proveedores.api import ProveedorViewSet, GetProveedorView, CatProveedorListView
 from productos.api import ProductoViewSet, GetProductosRestauranteView, GetProductosProveedorView, CatProductoListView, EstProductoPListView
-from ordenes.api import OrdenViewSet, OrdenItemViewSet, GetOrdenView
+from ordenes.api import OrdenViewSet, OrdenItemViewSet, GetOrdenView, GetItemsOrdenView
 from reviews.api import ReviewViewSet, GetReviewView
 
 
@@ -33,7 +33,7 @@ router.register(r'productos', ProductoViewSet)
 router.register(r'proveedores', ProveedorViewSet)
 router.register(r'restaurantes', RestauranteViewSet)
 router.register(r'ordenes', OrdenViewSet)
-router.register(r'items_ordenes', OrdenItemViewSet)
+router.register(r'items_ordenes', OrdenItemViewSet) # Query username=string
 router.register(r'reviews', ReviewViewSet)
 
 urlpatterns = [
@@ -48,7 +48,8 @@ urlpatterns = [
     path('proveedor/<str:username>', GetProveedorView.as_view()),
     path('proveedores/categorias', CatProveedorListView.as_view()),
     path('reviews/<str:username>', GetReviewView.as_view()),
-    path('ordenes/<str:username>', GetOrdenView.as_view()),
+    path('ordenes/<str:username>', GetOrdenView.as_view()), # Query latest=bool
+    path('items_orden/', GetItemsOrdenView.as_view()), # Query orden_id=int
     path('productos_restaurante/<int:restaurante_id>', GetProductosRestauranteView.as_view()),
     path('productos_proveedor/<int:proveedor_id>', GetProductosProveedorView.as_view()),
     path('productos/categorias', CatProductoListView.as_view()),

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from proveedores import catalogos
 
 class Proveedor(models.Model):
-    nombre = models.CharField(max_length=30)
+    nombre = models.CharField(max_length=50)
     banner = models.URLField(max_length=200, null=True, blank=True)
     icono = models.URLField(max_length=200, null=True, blank=True)
     descripcion = models.CharField(
