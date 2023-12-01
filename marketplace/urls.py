@@ -47,7 +47,8 @@ urlpatterns = [
     path('restaurantes/categorias', CatRestauranteListView.as_view()),
     path('proveedor/<str:username>', GetProveedorView.as_view()),
     path('proveedores/categorias', CatProveedorListView.as_view()),
-    path('reviews/<str:username>', GetReviewView.as_view()),
+    # path('reviews/<str:username>', GetReviewView.as_view()),
+    path('reviews/by', GetReviewView.as_view()),
     path('ordenes/<str:username>', GetOrdenView.as_view()), # Query latest=bool
     path('items_orden/', GetItemsOrdenView.as_view()), # Query orden_id=int
     path('productos_restaurante/<int:restaurante_id>', GetProductosRestauranteView.as_view()),
