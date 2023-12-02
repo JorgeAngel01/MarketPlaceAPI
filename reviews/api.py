@@ -47,14 +47,29 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
 class GetReviewView(views.APIView):
 
-    def get(self, request, username):
-        try:
-            autor = User.objects.get(username=username)
-            
-            reviews = Review.objects.filter(autor=autor)
-            
-            serializer = ReviewSerializer(reviews, many=True)
-            return response.Response(serializer.data)
+    def get(self, request):
+        username = request.query_params.get('username')
+        restaurante = request.query_params.get('restaurante')
+        proveedor = request.query_params.get('proveedor')
+        producto = request.query_params.get('producto')
 
-        except User.DoesNotExist:
-            return response.Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        if username:
+            try:
+                autor = User.objects.get(username=username)
+            except User.DoesNotExist:
+                return response.Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+            reviews = Review.objects.filter(autor=autor)
+        elif restaurante:
+            reviews = Review.objects.filter(restaurante=restaurante)
+        elif proveedor:
+            reviews = Review.objects.filter(proveedor=proveedor)
+        elif producto:
+            reviews = Review.objects.filter(producto=producto)
+        else:
+            return response.Response({'error': 'No username or restaurante provided'}, status=status.HTTP_400_BAD_REQUEST)
+                
+        if not reviews.exists():
+            return response.Response({'error': 'No reviews found'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = ReviewSerializer(reviews, many=True)
+        return response.Response(serializer.data)
