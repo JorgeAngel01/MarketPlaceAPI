@@ -22,7 +22,7 @@ from usuarios.api import UsuarioViewSet, RegistroAPIView, LogoutAPIView, GetUser
 from restaurantes.api import RestauranteViewSet, GetRestaurantView, CatRestauranteListView
 from proveedores.api import ProveedorViewSet, GetProveedorView, CatProveedorListView
 from productos.api import ProductoViewSet, GetProductosRestauranteView, GetProductosProveedorView, CatProductoListView, EstProductoPListView
-from ordenes.api import OrdenViewSet, OrdenItemViewSet, GetOrdenView, GetItemsOrdenView
+from ordenes.api import OrdenViewSet, OrdenItemViewSet, GetOrdenView, GetItemsOrdenView, GetOrdenItemsByRestauranteProveedorView
 from reviews.api import ReviewViewSet, GetReviewView
 
 
@@ -48,11 +48,13 @@ urlpatterns = [
     path('proveedor/<str:username>', GetProveedorView.as_view()),
     path('proveedores/categorias', CatProveedorListView.as_view()),
     # path('reviews/<str:username>', GetReviewView.as_view()),
-    path('reviews/by', GetReviewView.as_view()),
-    path('ordenes/<str:username>', GetOrdenView.as_view()), # Query latest=bool
-    path('items_orden/', GetItemsOrdenView.as_view()), # Query orden_id=int
+    # Query username, restaurante, proveedor, producto
+    path('reviews/by', GetReviewView.as_view()), 
     path('productos_restaurante/<int:restaurante_id>', GetProductosRestauranteView.as_view()),
     path('productos_proveedor/<int:proveedor_id>', GetProductosProveedorView.as_view()),
     path('productos/categorias', CatProductoListView.as_view()),
     path('productos/estados', EstProductoPListView.as_view()),
+    path('ordenes/<str:username>', GetOrdenView.as_view()), # Query latest=bool
+    path('items_orden/', GetItemsOrdenView.as_view()), # Query orden_id=int
+    path('items/by', GetOrdenItemsByRestauranteProveedorView.as_view()) # Query restaurante, proveedor
 ]
